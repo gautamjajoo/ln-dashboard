@@ -1,4 +1,4 @@
-import withStyles from "@mui/styles/withStyles";
+import { styled } from '@mui/material/styles';
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -17,13 +17,16 @@ import { GetInfoNode, NodeAddress } from "../../model/GetInfoNode";
 import { useState } from "react";
 import { NodeTable } from "../tableNodes/NodeTable.component";
 
-const BootstrapInput = withStyles((_) => ({
-  root: {
-    "label + &": {
-      marginTop: theme.spacing(2),
-    },
-  },
-  input: {
+const PREFIX = 'Home';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  input: `${PREFIX}-input`
+};
+
+const StyledGrid = styled(Grid)(({}) => ({
+  [`& .${classes.input}`]: {
+    marginTop: theme.spacing(2),
     borderRadius: 4,
     position: "relative",
     backgroundColor: theme.palette.background.paper,
@@ -36,8 +39,10 @@ const BootstrapInput = withStyles((_) => ({
       borderColor: theme.palette.divider,
       boxShadow: "0 0 0 0.2rem " + theme.palette.divider,
     },
-  },
-}))(InputBase);
+  }
+}));
+
+const BootstrapInput = InputBase;
 
 type ParentProps = {
   nodeInfo: GetInfoNode | null;
@@ -55,9 +60,12 @@ export default function HomeView({ nodeInfo, show }: ParentProps) {
   }
   if (nodeInfo === null) return <>NodeInfo null</>;
   return (
-    <Grid container direction="row" justifyContent="center" alignItems="center">
+    <StyledGrid container direction="row" justifyContent="center" alignItems="center" sx={{ maxWidth:'100vw'}}>
       <Card>
-        <CardContent>
+        <CardContent
+        style={{
+          backgroundColor: theme.palette.background.paper,
+        }}>
           <Grid
             container
             direction="row"
@@ -105,7 +113,11 @@ export default function HomeView({ nodeInfo, show }: ParentProps) {
                   setSelectAddr(mapAddress.get(event.target.value))
                 }
                 label="Address"
-                input={<BootstrapInput />}
+                input={<BootstrapInput
+                  classes={{
+                    root: classes.root,
+                    input: classes.input
+                  }} />}
               >
                 {nodeInfo!.address.map((address, index) => {
                   return (
@@ -137,6 +149,6 @@ export default function HomeView({ nodeInfo, show }: ParentProps) {
       >
         <NodeTable show={show} />
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 }

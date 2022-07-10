@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { GetServerSideProps } from "next";
 import { CssBaseline } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider, Theme, createTheme } from "@mui/material/styles";
 import HomeView from "../components/home/Home.component";
 import BasicAppBar from "../components/appbar/BasicAppBar.component";
 import { Helmet } from "react-helmet";
@@ -14,6 +14,21 @@ import IconButton from "@mui/material/IconButton";
 import { Close } from "@mui/icons-material";
 import Offline from "../components/genericView/Offline.component";
 import { StyledEngineProvider } from "@mui/material/styles";
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 //import MetricsView from '../components/metricsView/MetricsView.component';
 

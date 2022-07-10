@@ -49,11 +49,11 @@ class BasicAppBar extends React.Component {
       <Container maxWidth="xl">
         <AppBar
           position="sticky"
-          style={{
-            backgroundColor: theme.palette.background.paper,
-          }}
         >
-          <Toolbar>
+          <Toolbar
+            style={{
+              backgroundColor: theme.palette.background.paper,
+            }}>
             <Grid justifyContent="space-between" alignItems="center" container>
               <Grid item>
                 <IconButton
@@ -69,6 +69,7 @@ class BasicAppBar extends React.Component {
               </Grid>
               <Grid item>
                 <Chip
+                  variant="filled"
                   label={network}
                   style={{
                     background: "#" + colorByNetwork[network],
