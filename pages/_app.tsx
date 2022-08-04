@@ -6,10 +6,15 @@ import theme from "../theme/DarkTheme";
 import { CssBaseline } from "@mui/material";
 import { Helmet } from "react-helmet";
 import BasicAppBar from "../components/appbar/BasicAppBar.component";
+import createEmotionCache from './createEmotionCache';
+import { CacheProvider } from '@emotion/react';
+
+const cache = createEmotionCache();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <StyledEngineProvider injectFirst>
+      <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Helmet>
@@ -40,6 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Helmet>
         <BasicAppBar ready={true} child={<Component {...pageProps} />} />
       </ThemeProvider>
+      </CacheProvider>
     </StyledEngineProvider>
   );
 }
