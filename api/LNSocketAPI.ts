@@ -66,9 +66,7 @@ export default class LNSocketAPI implements AppAPI {
     let result = (
       await axios.post(`${this.lambda}/lnsocket`, lambdaRequest, {
         headers: {
-          post: {
-            "Content-Type": "application/json",
-          },
+          "Content-Type": "application/json",
         },
       })
     ).data;
