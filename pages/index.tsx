@@ -30,5 +30,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function Home({ nodeInfo }: AppProps) {
-  return <HomeView nodeInfo={nodeInfo} show={() => 1} />;
+  return <HomeView nodeInfo={nodeInfo} />;
 }

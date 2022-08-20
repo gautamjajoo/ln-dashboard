@@ -44,7 +44,6 @@ export function intoSatoshi(priceBitcoin: number, satoshi: number): number {
 /**
  * TODO: docs it
  * @param nodeId
- * @param show
  */
 export const pingNode = async (nodeId: string) => {
   try {
@@ -86,16 +85,13 @@ export function convert(param: any): number {
  * TODO: docs it
  * @param ticker
  * @param satoshi
- * @param show
  */
 export const getPrices = async (
   ticker: string = "BTC-USD",
-  show: (visible: boolean, message: string) => void
 ) => {
   try {
     return (await axios(`/api/prices/${ticker}`)).data;
   } catch (e) {
-    show(true, `Error with message: ${e}`);
     console.error(e);
   }
 };
